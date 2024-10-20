@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="relative ser-image ">
+    <img src="{{ asset('/images/emergencies.jpg') }}" alt="Fondo Perro Clinica Veterinaria" class="w-full h-full object-cover object-center">
+</section>
+<section class="px-24 py-5">
+    <div>
+        <h1 class="shadtext text-center text-4xl font-semibold italic invisible sm:invisible md:visible">Consultas</h1>
+        <p class="text-lg font-semibold pt-10 py-5">Citas Veterinarias:</p>
+        <p class="italic">Cualquier animal puede acudir a consulta para que se le realice un diagnóstico y un tratamiento.</p>
+        <p>Las citas para consulta abarcan una gran cantidad de temas que son necesarios para el cuidado de nuestras mascotas; 
+        Por eso realizamos asesoramientos sobre su cuidado, la nutrición o el comportamiento de las mascotas, mejorando así la convivencia. 
+        Buscamos detectar con previsión posibles patologías complejas que requieran especialistas. Nuestro equipo veterinario maneja 
+        cualquier enfermedad, para ello primero realizando un diagnósico y luego un tratamiento para palir los problemas de salud aparentes.
+        Además, gestionamos identificaciones y trámites oficiales. Para solicitar una cita para consulta puedes llamar o registrarte
+        <a href="{{ path('app_login') }}" class="hover:text-indigo-500 underline">Aquí.</a></p>
+    </div>
+</section>
+<section class="px-20 py-16">
+    <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold py-5">Radiografías</h2>
+            <p>Realizamos servicios de radiografías para diagnosticar problemas internos y asegurarnos de que tu mascota reciba el tratamiento adecuado lo antes posible.</p>
+            <p>Disponemos de una gran cantidad de equipo tecnologíco que nos ayuda para poder realizar con éxito nuestras labores en la clínica. Esas herramientas nos posibilitan
+            poder detectar diferentes problemas a nuestras mascotas, con el objeto de poder intervenir cuanto antes para evitar que puedan empeorar.</p>
+        </div>
+        <div class="md:w-1/2 p-4">
+            <img src="images/services.jpg" alt="Radiografías" class="w-full h-auto">
+        </div>
+    </div>
+</section>
+<section class="px-20 py-16">
+    <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 p-4">
+            <img src="images/emergencies.jpg" alt="Vacunaciones" class="w-full h-auto">
+        </div>
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold py-5">Vacunaciones</h2>
+            <p>Las vacunaciones son esenciales para el cuidado de nuestras mascotas pues nos permite protegerlas de posibles enfermedades. Por lo que ofrecemos vacunas para proteger y mantener a tu mascota sana y prevenir enfermedades..</p>
+        </div>
+    </div>
+</section>
+<section class="px-20 py-16">
+    <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold py-5">Peluquería</h2>
+            <p>Disponemos de sesiones de peluquería y baños especiales para darles a nuestras mascotas una buena higiene y limpieza. 
+             Se realiza como tratamiento estético y sanitario. Los baños especiales están enfocados a las mascotas con problemas de 
+             dermatitis para ofrecerles un cuidado mayor.</p>
+             <p>Para solicitar una cita para peluqueria puedes llamar o registrarte
+             <a href="{{ path('app_login') }}" class="hover:text-indigo-500 underline">Aquí.</a></p>
+        </div>
+        <div class="md:w-1/2 p-4">
+            <img src="images/services.jpg" alt="Radiografías" class="w-full h-auto">
+        </div>
+    </div>
+</section>
+{% endblock %}

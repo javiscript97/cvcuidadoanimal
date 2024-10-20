@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="px-24 py-16">
+        <h1 class="shadtext text-3xl font-bold invisible sm:invisible md:visible pt-5 py-8">Agenda</h1>
+        <div class="overflow-x-auto  pb-24 pt-8">
+            <table  class="min-w-full bg-white border border-gray-300" id="timetableTab">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">ID</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Fecha</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Descripción</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Tipo</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">cliente</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">veterinario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                    <tr class="border-t">
+                        <td class="py-3 px-4">{{ cita.id }}</td>
+                        <td class="py-3 px-4">{{ cita.fecha|date('Y-m-d H:i:s') }}</td>
+                        <td class="py-3 px-4">{{ cita.descripcion }}</td>
+                        <td class="py-3 px-4">{{ cita.tipo }}</td>
+                        <td class="py-3 px-4">{{cita.getClienteNombre() }}</td>
+                        <td class="py-3 px-4">{{ cita.getVetNombre() }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center py-3">No hay citas disponibles</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</section>
+<section class="hidden">
+    <button>Añadir</button>
+    <button>Modificar</button>
+    <button>Eliminar</button>
+</section>
+{% endblock %}

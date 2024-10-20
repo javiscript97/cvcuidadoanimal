@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="relative hero-image ">
+        <img src="{{ asset('/images/bck.jpg') }}" alt="Fondo Perro Clinica Veterinaria" class="w-full h-full object-cover object-top">
+        <div class="absolute top-5 right-0 p-8 text-right">
+            <!-- Textos en el cuadrante 3 -->
+            <h1 class="text-3xl font-bold text-white drop-shadow-lg">Clinica Veterinaria</h1>
+            <h1 class="text-4xl font-semibold text-white drop-shadow-lg">CUIDADO ANIMAL</h1>
+        </div>
+        <!-- Texto en el cuadrante 9 -->
+        <div class="absolute bottom-0 right-0 p-8 text-right ">
+            <h1 class="shadtext text-3xl font-semibold text-white italic invisible sm:invisible md:visible drop-shadow-xl">"tu tranquilidad, su bienestar"</h1>
+        </div>
+    </section>
+
+    <section class="services text-center py-16">
+        <h1 class="text-4xl font-bold mb-4">Nuestros Servicios</h1>
+        <h2 class="text-2xl text-gray-600 mb-12">Ofrecemos todo tipo de Servicios</h2>
+
+        <div class="services-row grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-28 justify-items-center">
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_service_consultation') }}">
+                    <img src="images/consultas.png" alt="Consultas" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Consultas</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_pharmacy') }}">
+                    <img src="images/farmacia.png" alt="Farmacia" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Farmacia</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_service_other') }}">
+                    <img src="images/historico.png" alt="Historial Clínico" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Historial Clínico</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_service_consultation') }}">
+                    <img src="images/peluqueria.png" alt="Peluquería" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Peluquería</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_service_consultation') }}">
+                    <img src="images/radiografia.png" alt="Radiografía" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Radiografía</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_service_other') }}">
+                    <img src="images/refugio.png" alt="Refugio Animal" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Refugio Animal</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_emergencies') }}">
+                    <img src="images/urgencias.png" alt="Urgencias" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Urgencias</h3></a>
+                </div>
+                <div class="service text-center  hover:text-indigo-500">
+                    <a href="{{ path('app_service_consultation') }}">
+                    <img src="images/vacuna.png" alt="Vacunaciones" class="w-28 h-28 mx-auto mb-4">
+                    <h3 class="text-lg font-semibold">Vacunaciones</h3></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="text-center py-16">
+        <h1 class="text-4xl font-bold mb-4">¿Quienes somos?</h1>
+        <h2 class="text-2xl text-gray-600 mb-12">Somos una clínica veterinaria joven pero con mucha calidad y dedicación en nuestro trabajo</h2>
+    </section>
+{% endblock %}

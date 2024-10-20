@@ -2,16 +2,117 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <title>{% block title %}cvveterinaria{% endblock %}</title>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4321/4321612.png">
         {% block stylesheets %}
+             <link rel="stylesheet" href="{{ asset('styles/home.css') }}"> 
         {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <nav class="bg-white shadow-md">
+                <div class="container mx-auto px-6 py-3">
+                    <div class="flex justify-between items-center">
+                        <div class="text-lg font-bold">
+                            <a href="{{ path('app_home') }}">cvcuidadoanimal</a>
+                        </div>
+                        <div class="hidden md:flex md:items-center" id="navbarSupportedContent">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <p class="font-semibold text-indigo-500">Bienvenido, {{ app.user.nombre }}!</p>
+                            {% endif %}
+                            <ul class="flex flex-col md:flex-row md:ml-auto">
+                                <li class="nav-item md:pl-4">
+                                    <a class="nav-link font-bold hover:text-indigo-500" href="{{ path('app_home') }}">Inicio</a>
+                                </li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li class="nav-item md:pl-4">
+                                    <a class="nav-link font-bold hover:text-indigo-500" href="{{ path('app_profile') }}">Perfil</a>
+                                </li>
+                                <li class="nav-item md:pl-4">
+                                    <a class="nav-link font-bold hover:text-indigo-500" href="{{ path('app_book') }}">Reservar Cita</a>
+                                </li>
+                                {% endif %}
+                                <li class="nav-item md:pl-4">
+                                    <a class="nav-link font-bold hover:text-indigo-500" href="{{ path('app_home') }}">Contacto</a>
+                                </li>
+                                <li class="nav-item md:pl-4 group relative z-50">
+                                    <a class="nav-link font-bold hover:text-indigo-500" href="{{ path('app_service_consultation') }}">Servicios</a>
+                                    <!-- Menú desplegable -->
+                                    <ul class="dropdown-menu absolute hidden group-hover:block bg-white shadow-md rounded-md p-2 z-50">
+                                        <li><a class="dropdown-item font-bold block hover:text-indigo-500 p-2" href="{{ path('app_service_consultation') }}">Consultas</a></li>
+                                        <li><a class="dropdown-item font-bold block hover:text-indigo-500 p-2" href="{{ path('app_service_other') }}">Servicios</a></li>
+                                        <li><a class="dropdown-item font-bold block hover:text-indigo-500 p-2" href="{{ path('app_emergencies') }}">Urgencias</a></li>
+                                        <li><a class="dropdown-item font-bold block hover:text-indigo-500 p-2" href="{{ path('app_pharmacy') }}">Farmacia</a></li>
+                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                        <li><a class="dropdown-item font-bold block hover:text-indigo-500 p-2" href="{{ path('app_timetable') }}">Agenda</a></li>
+                                        <li><a class="dropdown-item font-bold block hover:text-indigo-500 p-2" href="{{ path('app_history') }}">Historial</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <li class="nav-item md:pl-4">
+                                        <a class="nav-link font-bold  hover:text-indigo-500" href="{{ path('app_logout') }}">Logout</a>
+                                    </li>
+                                {% else %}
+                                <li class="nav-item md:pl-4">
+                                    <a class="nav-link font-bold  hover:text-indigo-500" href="{{ path('app_login') }}">Login</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        {% block body %}
+
+        {% endblock %}
+
+        <footer class="bg-indigo-500 text-white py-8">
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Logo y redes sociales -->
+                <div class="text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4321/4321612.png" alt="Logo" class="w-28 h-28 mx-auto mb-4">
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://instagram.com" class="hover:text-pink-500">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="instagram"  class="w-7 h-7 mx-auto mb-4">
+                        </a>
+                        <a href="https://tiktok.com" class="hover:text-gray-500">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670358.png" alt="tiktok"  class="w-7 h-7 mx-auto mb-4">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Información de contacto -->
+                <div class="text-center">
+                    <h4 class="font-semibold mb-2">Contáctanos</h4>
+                    <p>Dirección: Avenida Marqués de los Vélez</p>
+                    <p>Teléfono: +34 123 456 789</p>
+                    <p>Urgencias: +34 987 123 345</p>
+                    <p>Email: contacto@cvcuidadoanimal.com</p>
+                </div>
+
+                <!-- Páginas legales -->
+                <div class="text-center">
+                    <h4 class="font-semibold mb-2">Legales</h4>
+                    <ul>
+                        <li><a href="#" class="hover:underline">Aviso Legal</a></li>
+                        <li><a href="#" class="hover:underline">Protección de la Privacidad</a></li>
+                        <li><a href="#" class="hover:underline">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Derechos reservados -->
+            <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm">
+                cvcuidadoanimal © 2024 | Clínica Veterinaria en Murcia
+            </div>
+        </footer>
     </body>
 </html>

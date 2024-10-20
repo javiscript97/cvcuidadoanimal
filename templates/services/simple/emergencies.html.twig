@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="relative ser-image ">
+    <img src="{{ asset('/images/services.jpg') }}" alt="Fondo Perro Clinica Veterinaria" class="w-full h-full object-cover object-top">
+        <div class="absolute top-5 right-0 pt-4 pr-96 text-right">
+            <!-- Textos en el cuadrante 3 -->
+            <h1 class="shadtext text-3xl text-indigo-900 font-bold  drop-shadow-lg">NÚMERO URGENCIAS</h1>
+            <h1 class="shadtext text-4xl text-indigo-900 font-bold  drop-shadow-lg">+34 987 123 345</h1>
+        </div>
+</section>
+<section class="px-24 py-5">
+    <div>
+        <h1 class="shadtext text-center text-2xl font-semibold invisible sm:invisible md:visible pt-5 py-5">Urgencias</h1>
+        <p>En nuestra clínica ofrecemos un servicio de 24h para urgencias en casos de necesidades extremas. Disponemos de un 
+        equipo avanzado y especializado para casos de emergencias para atender cualquier situación crítica, efectuando una 
+        labor rápida y efectiva para poner a salvo la vida de nuestras mascotas. Este servicio tiene unas tarifas mas caras 
+        debido a las guardias nocturnas para la atención de posibles necesidadesy por la prioridad que se les da 
+        a este servicio sobre otros teniendo que aplazarlos.</p>
+        <p class="font-bold">Llamar Número Urgencias: +34 987 123 345</p>
+    </div>
+</section>
+<section class="px-20 py-16">
+    <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 p-4">
+            <img src="images/perro-cuidado.jpg" alt="Hospitalizacion" class="w-full h-auto">
+        </div>
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold py-5">Hospitalización</h2>
+            <p>Nuesras instalaciones estan preparadas para brindar un buen servicio de hospitalización para la vigilancia, cuidado 
+            y recuperación de las mascotas. Proporcionando un ambiente tranquilo, seguro y comodo, con personal totalmente involucrados
+             y pendientes de los tratamientos necesarios para la recuperación de las mascotas.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="w-full px-24 py-16 md:w-2/3 mx-auto mb-8">
+    <h1 class="text-2xl py-6 font-bold text-gray-900 dark:text-white mb-4">Reservar Cita</h1>
+
+    {{ form_start(reservaCitaForm) }}
+
+    <div class="mb-4">
+        {{ form_label(reservaCitaForm.fecha, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(reservaCitaForm.fecha, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md p-2 mt-1 mb-2'}}) }}
+    </div>
+
+    <div class="mb-4">
+        {{ form_label(reservaCitaForm.descripcion, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(reservaCitaForm.descripcion, {'attr': {'class': 'block w-full h-20 shadow-sm border-black-300 rounded-md p-4 mt-1 mb-2'}}) }}
+    </div>
+
+    <div class="mb-4">
+        {{ form_label(reservaCitaForm.tipo, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(reservaCitaForm.tipo, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md p-2 mt-1 mb-2'}}) }}
+    </div>
+
+    <div>
+        <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 text-white rounded-md p-2 mt-4 mb-2">
+            Reservar Cita
+        </button>
+    </div>
+
+    {{ form_end(reservaCitaForm) }}
+</div>
+{% endblock %}

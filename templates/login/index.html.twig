@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class= "w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
+    <form action= " {{ path('app_login') }} " method = "POST" >
+        <div>
+            <label class="block test-sm text-gray-700 dark:text-gray-300 font-medium">Email</label>
+            <input type= "text" name= "_username" value= "{{ lastUsername }}" class="block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2" />
+        </div>
+        <div>
+            <label class="block test-sm text-gray-700 dark:text-gray-300 font-medium">Password</label>
+            <input type= "password" name= "_password" class="block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2" />
+        </div>
+
+        <input type="hidden" name="_target_path" value = "/" />
+        <div>
+            <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700  text-white rounded-md border p-2 mt-4 mb-2">Login</button>
+        </div>
+        {% if error %}
+            <div class="text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div>
+            <a href="{{ path('app_register') }}" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700  text-white text-center rounded-md border p-2 mt-4 mb-2">Register</a>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
+  

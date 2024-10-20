@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<div class="w-full px-24 py-16 md:w-2/3 mx-auto mb-8">
+    <h1 class="text-2xl py-6 font-bold text-gray-900 dark:text-white mb-4">Reservar Cita</h1>
+    {{ form_start(form) }}
+     <div class="mb-4">
+        {{ form_row(form.fecha) }}
+        {{ form_errors(form.fecha) }}
+    </div>
+     <div class="mb-4">
+        {{ form_row(form.descripcion) }}
+        {{ form_errors(form.descripcion) }}
+    </div>
+     <div class="mb-4">
+        {{ form_row(form.mascota_id) }}
+        {{ form_errors(form.mascota_id) }}
+    </div>
+     <div class="mb-4">
+        {{ form_row(form.vet_id) }}
+        {{ form_errors(form.vet_id) }}
+    </div>
+
+    <div>
+        {{ form_row(form.submit) }}
+    </div>
+        
+    {{ form_end(form) }}
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Descripción</th>    
+                <th>Mascota</th>
+                <th>Veterinario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for historial in historiales %}
+                <tr>
+                    <td>{{ historial.fecha|date('Y-m-d') }}</td>
+                    <td>{{ historial.descripcion }}</td>
+                    <td>{{ historial.getMascotaId().getNombre() }}</td>
+                    <td>{{ historial.getVetId().getMail() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+
+/*Image*/
+.hero-image{
+
+    height: 85vh;
+
+}
+
+.ser-image{
+
+    height: 65vh;
+
+}
+
+.shadtext{
+
+    text-shadow: 0.5px 0.5px rgb(72, 71, 71);
+}

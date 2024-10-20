@@ -1,0 +1,56 @@
+{# templates/profile/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block body %}
+<div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Perfil de {{ user.nombre }}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold mb-2">Información Personal</h2>
+            <p><strong>Nombre:</strong> {{ user.nombre }}</p>
+            <p><strong>Email:</strong> {{ user.mail }}</p>
+            <p><strong>Teléfono:</strong> {{ user.telefono }}</p>
+            <p><strong>Dirección:</strong> {{ user.direccion }}</p>
+            <p><strong>Edad:</strong> {{ user.edad }}</p>
+            <a href="{{ path('app_profile_edit') }}" class="mt-4 inline-block bg-green-500 text-white rounded px-4 py-2">Editar Perfil</a>
+            <a href="{{ path('app_profile_delete') }}" class="mt-4 inline-block bg-red-500 text-white rounded px-4 py-2" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">Eliminar Cuenta</a>
+        </div>
+
+        <div class="col-span-1 md:col-span-2 bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold mb-2">Mascotas Registradas</h2>
+            <a href="{{ path('app_profile_add_mascota') }}" class="inline-block mb-4 bg-blue-500 text-white rounded px-4 py-2">Agregar Mascota</a>
+            {% if mascotas|length > 0 %}
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-200 px-4 py-2">Nombre</th>
+                            <th class="border border-gray-200 px-4 py-2">Edad</th>
+                            <th class="border border-gray-200 px-4 py-2">Especie</th>
+                            <th class="border border-gray-200 px-4 py-2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mascota in mascotas %}
+                            <tr>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.nombre }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.edad }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.especie }}</td>
+                                <td class="border border-gray-200 px-4 py-2">
+                                    <a href="{{ path('app_profile_edit_mascota', { id: mascota.id }) }}" class="text-yellow-500">Modificar</a>
+                                    <a href="{{ path('app_profile_delete_mascota', { id: mascota.id }) }}" class="text-red-500 ml-4" onclick="return confirm('¿Estás seguro de que deseas eliminar esta mascota?');">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No tienes mascotas registradas.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

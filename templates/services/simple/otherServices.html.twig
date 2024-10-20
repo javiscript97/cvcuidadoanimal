@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="relative ser-image ">
+    <img src="{{ asset('/images/gato-cuidado.jpg') }}" alt="Fondo Perro Clinica Veterinaria" class="w-full h-full object-cover object-top">
+</section>
+<section class="px-24 py-5">
+    <div>
+        <h1 class="shadtext text-center text-2xl font-semibold invisible sm:invisible md:visible pt-5 py-5">Historial Clínico</h1>
+        <p>El historial clinico es el resumen de lo más importante que ocurre en las consultas de nuestras mascotas, 
+        para poder dejarlo anotado y ser revisado con posterioridad. Esto nos permite almacenar información valiosa sobre los puntos 
+        a destacar de las citas veterinarias a las que las mascotas acuden con sus dueños. Esta herramienta es muy útil para llevar un control del 
+        estado de la mascota. Gracias a esto permite analizar mas detenidamente y realizarle un diagnostico mas preciso.
+        Para poder acceder debes de registrarte
+        <a href="{{ path('app_login') }}" class="hover:text-indigo-500 underline">Aquí.</a></p>
+    </div>
+</section>
+<section class="px-20 py-16">
+    <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 p-4">
+            <h2 class="text-2xl font-semibold py-5">Refugio Animal</h2>
+            <p>Tenemos convenio con refugios animales para poder acogerlos y cuidarlos. Cada animal que acogemos recibe atención 
+            médica personalizada, con el fin de que estén sanos mientras esperan encontrar una familia definitiva.</p>
+            <p>La colaboración con estos refugios es para dar a los animales una segunda oportunidad en hogares donde los quieran. 
+            También organizamos campañas para promover la adopción responsable y reducir el número de animales sin hogar. 
+            Queremos que todos los animales reciban amor y cuidado.</p>
+        </div>
+        <div class="md:w-1/2 p-4">
+            <img src="images/anirefugio.jpg" alt="Refugio Animal" class="w-full h-auto">
+        </div>
+    </div>
+</section>
+{% endblock %}
