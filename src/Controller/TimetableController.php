@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use dump;
 use DateTime;
+use App\Entity\Chat;
 use App\Entity\Citas;
-use App\Entity\Producto;
+use App\Entity\Cliente;
+use App\Entity\Veterinario;
+use App\Entity\Usuario;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -33,17 +36,65 @@ class TimetableController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         //Obtenemos usuario
-        $cliente = $this->security->getUser();
+        $user = $this->security->getUser();
+        /*
         // Obtener mis datos de mis citas
-        $citas = $entityManager->getRepository(Citas::class)->findAll();
+        $citas = $entityManager->getRepository(Citas::class)->findBy([
+            'cliente_id' => $cliente->getId()
+                ]);
+*/
 
-        // Pasar los datos a la plantilla
-        return $this->render('booking/timetable.html.twig', [
-            'citas' => $citas,
-        ]);
+        if ($user instanceof Cliente || $user instanceof Veterinario) {
+            
+            if ($user instanceof Cliente){
+                $citas = $user->getCitas();
+
+                $cliente = $this->entityManager->getRepository(Cliente::class)->findOneBy([
+                    'mail' => $user->getUserIdentifier()
+                    ]);
+
+                $chats = $this->entityManager->getRepository(Chat::class)->findOneBy([
+                    'cliente_id' => $cliente->getId()
+                    ]); 
+                }
+            else if($user instanceof Veterinario){
+                $citas = $user->getCitas();
+
+                $cliente = $this->entityManager->getRepository(Veterinario::class)->findOneBy([
+                    'mail' => $user->getUserIdentifier()
+                    ]);
+
+                $chats = $this->entityManager->getRepository(Chat::class)->findOneBy([
+                    'cliente_id' => $cliente->getId()
+                    ]); 
+                }
+                // Pasar los datos a la plantilla
+                return $this->render('booking/timetable.html.twig', [
+                    'citas' => $citas,
+                    'chats' => $chats
+                ]);
+            }
+        else{
+                throw $this->createAccessDeniedException('No tienes acceso a esta página.');
+            }
+
+        return $this->render('booking/timetable.html.twig');
     }
  
+    #[Route('/agenda/delete/{id}', name: 'app_delete_cita')]
+    public function deleteMascota(Citas $citas): Response
+    {
+        $user = $this->getUser();
+        if (!$user instanceof Cliente || $citas->getClienteId() !== $user) {
+            throw $this->createAccessDeniedException('No tienes acceso a esta página.');
+        }
 
+        $this->entityManager->remove($citas);
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Cita eliminada con éxito.');
+        return $this->redirectToRoute('app_timetable');
+    }
 
 
 

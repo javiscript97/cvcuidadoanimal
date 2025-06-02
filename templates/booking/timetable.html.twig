@@ -13,8 +13,9 @@
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Fecha</th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Descripción</th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Tipo</th>
-                        <th class="text-left py-3 px-4 font-semibold text-gray-600">cliente</th>
-                        <th class="text-left py-3 px-4 font-semibold text-gray-600">veterinario</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Cliente</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Veterinario</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,12 @@
                         <td class="py-3 px-4">{{ cita.tipo }}</td>
                         <td class="py-3 px-4">{{cita.getClienteNombre() }}</td>
                         <td class="py-3 px-4">{{ cita.getVetNombre() }}</td>
+                        <td class="py-3 px-4">
+                        {% if cita.getTipo() == "consulta online"  %}
+                            <a href="{{ path('app_chat_show', { id: chats.id }) }}">Acceder al Chat</a> 
+                        {% endif %}
+                            <a href="{{ path('app_delete_cita', { id: cita.id }) }}" class="text-red-500" onclick="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">Eliminar</a>
+                        </td>
                     </tr>
                     {% else %}
                     <tr>
@@ -35,10 +42,5 @@
                 </tbody>
             </table>
         </div>
-</section>
-<section class="hidden">
-    <button>Añadir</button>
-    <button>Modificar</button>
-    <button>Eliminar</button>
 </section>
 {% endblock %}
