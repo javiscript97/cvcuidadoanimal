@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chat con {{ cliente_id.nombre }}{% endblock %}
+
+{% block body %}
+    <div class="max-w-2xl mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-4">Consulta con {{ cliente_id.nombre }}</h1>
+
+        <div class="bg-gray-100 p-4 rounded shadow mb-6 space-y-3 max-h-64 overflow-y-auto">
+            {% if mensajes is empty %}
+                <p class="text-gray-500">No hay mensajes aún.</p>
+            {% else %}
+                {% for mensaje in mensajes %}
+                    <div class="p-2 bg-white rounded border">
+                        <p class="text-sm text-gray-800">{{ mensaje.contenido }}</p>
+                        <p class="text-xs text-right text-gray-400">{{ mensaje.fecha|date('d/m/Y H:i') }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <form method="post">
+            <div class="mb-4 bg-gray-100 p-4 rounded shadow mb-6 space-y-3 max-h-64 overflow-y-auto">
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="mensaje" name="mensaje" required class="mt-1 w-full block rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 bold rounded text-sm">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
