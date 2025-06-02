@@ -16,3 +16,6 @@
 
     text-shadow: 0.5px 0.5px rgb(72, 71, 71);
 }
+
+#chat-messages { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+#chat-form { margin-top: 10px; }

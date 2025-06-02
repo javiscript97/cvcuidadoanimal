@@ -23,3 +23,30 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+# Symfony / PHP
+/vendor/
+/var/
+/.env.local
+/.env.*.local
+/.env
+
+# Logs
+*.log
+
+# Public bundles (assets)
+public/bundles/
+
+# Node 
+node_modules/
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Docker Compose override 
+/docker-compose.override.yml
