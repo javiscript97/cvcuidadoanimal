@@ -7,6 +7,7 @@ use DateTime;
 use App\Entity\Mascotas;
 use App\Entity\Historial;
 use App\Entity\Veterinario;
+use App\Repository\AnuncioRepository;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,11 +34,15 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
-    public function home(): Response
+    public function home(AnuncioRepository $anuncioRepository): Response
     {   
         $user = $this->getUser();
+
+        $anuncios = $anuncioRepository->findBy([], ['fecha' => 'DESC'], 4);
+
         return $this->render('home/home.html.twig',[
-            'user' => $user
+            'user' => $user,
+            'anuncios' => $anuncios
         ]);
     }
         
