@@ -1,29 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class= "w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
-    <form action= " {{ path('app_login') }} " method = "POST" >
-        <div>
-            <label class="block test-sm text-gray-700 dark:text-gray-300 font-medium">Email</label>
-            <input type= "text" name= "_username" value= "{{ lastUsername }}" class="block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2" />
-        </div>
-        <div>
-            <label class="block test-sm text-gray-700 dark:text-gray-300 font-medium">Password</label>
-            <input type= "password" name= "_password" class="block w-full shadow-sm border-gray-300  rounded-md border p-2 mt-1 mb-2" />
+<div class="w-full md:w-1/2 lg:w-1/3 mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <form action="{{ path('app_login') }}" method="POST">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Login</h2>
+
+        <div class="mb-4">
+            <label for="_username" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="text" name="_username" value="{{ lastUsername }}" class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1" placeholder="Enter your email" />
         </div>
 
-        <input type="hidden" name="_target_path" value = "/" />
-        <div>
-            <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700  text-white rounded-md border p-2 mt-4 mb-2">Login</button>
+        <div class="mb-4">
+            <label for="_password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" name="_password" class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1" placeholder="Enter your password" />
         </div>
+
+        <input type="hidden" name="_target_path" value="/" />
+
+        <div class="mt-6">
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">Login</button>
+        </div>
+
         {% if error %}
-            <div class="text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="mt-4 text-red-500 text-sm">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
         {% endif %}
-        <div>
-            <a href="{{ path('app_register') }}" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700  text-white text-center rounded-md border p-2 mt-4 mb-2">Register</a>
+
+        <div class="mt-6">
+            <a href="{{ path('app_register') }}" class="w-full block bg-gray-100 text-indigo-600 text-center py-2 rounded-md font-semibold hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">Register</a>
+        </div>
+        <div class="mt-6">
+            <a href="{{ path('app_request_link') }}" class="text-indigo-600 text-center py-2 font-semibold hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">Restaurar contraseña</a>
         </div>
     </form>
-
 </div>
 {% endblock %}
-  
