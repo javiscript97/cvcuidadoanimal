@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error del servidor{% endblock %}
+
+{% block body %}
+<div class="text-center mt-20">
+    <h1 class="text-6xl font-bold text-red-800">500</h1>
+    <p class="mt-4 text-xl">Ups... Ha ocurrido un error inesperado.</p>
+    <p class="text-gray-600">Nuestro equipo ha sido notificado.</p>
+    <a href="{{ path('app_home') }}" class="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded">Volver al inicio</a>
+</div>
+{% endblock %}
