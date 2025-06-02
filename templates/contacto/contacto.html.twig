@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block body %}
+<div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded shadow">
+
+    <h1 class="text-2xl font-bold mb-6 text-center">Contáctanos</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="mb-4 p-3 bg-green-100 text-green-800 rounded text-center">{{ message }}</div>
+    {% endfor %}
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div>
+            {{ form_start(form) }}
+                <div class="mb-4">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'w-full border px-3 py-2 rounded'}}) }}
+                </div>
+                <div class="mb-4">
+                    {{ form_label(form.mensaje) }}
+                    {{ form_widget(form.mensaje, {'attr': {'class': 'w-full border px-3 py-2 rounded h-32'}}) }}
+                </div>
+                {{ form_widget(form.enviar) }}
+            {{ form_end(form) }}
+        </div>
+
+        <div>
+            <h2 class="text-lg font-semibold mb-2">Información de contacto</h2>
+            <p><strong>Teléfono:</strong>+34 968 123 456</p>
+            <p><strong>Urgencias:</strong>+34 123 456 789</p>
+            <p><strong>Email:</strong> contacto@cvcuidadoanimal.com</p>
+
+            <div class="mt-6">
+                <h3 class="text-md font-semibold mb-2">¿Dónde estamos?</h3>
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.1521992281764!2d-1.1336657242543815!3d37.996910271930226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd638218a301a1ef%3A0xdc40c874b46f3e8!2sAv.%20Marqu%C3%A9s%20de%20Los%20V%C3%A9lez%2C%20Murcia!5e0!3m2!1ses!2ses!4v1748831168768!5m2!1ses!2ses" 
+                    width="100%" 
+                    height="200" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
