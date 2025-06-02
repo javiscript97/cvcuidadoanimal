@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\MascotasRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MascotasRepository;
+use App\Controller\ResetPasswordFormType;
 use Symfony\UX\Turbo\Attribute\Broadcast;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: MascotasRepository::class)]
 #[Broadcast]
@@ -148,22 +149,22 @@ class Mascotas
         return $this->historiales;
     }
 
-    public function addHistoriale(Historial $historiale): static
+    public function addHistoriales(Historial $historiales): static
     {
-        if (!$this->historiales->contains($historiale)) {
-            $this->historiales->add($historiale);
-            $historiale->setMascotaId($this);
+        if (!$this->historiales->contains($historiales)) {
+            $this->historiales->add($historiales);
+            $historiales->setMascotaId($this);
         }
 
         return $this;
     }
 
-    public function removeHistoriale(Historial $historiale): static
+    public function removeHistoriales(Historial $historiales): static
     {
-        if ($this->historiales->removeElement($historiale)) {
+        if ($this->historiales->removeElement($historiales)) {
             // set the owning side to null (unless already changed)
-            if ($historiale->getMascotaId() === $this) {
-                $historiale->setMascotaId(null);
+            if ($historiales->getMascotaId() === $this) {
+                $historiales->setMascotaId(null);
             }
         }
 

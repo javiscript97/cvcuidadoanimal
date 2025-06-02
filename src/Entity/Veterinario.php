@@ -2,32 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\VeterinarioRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Chat;
+use App\Entity\Citas;
+use App\Entity\Historial;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VeterinarioRepository;
 use Symfony\UX\Turbo\Attribute\Broadcast;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: VeterinarioRepository::class)]
 #[Broadcast]
-class Veterinario
+class Veterinario extends Usuario
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $nombre = null;
 
     #[ORM\Column]
     private ?int $edad = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $mail = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
 
     #[ORM\Column(length: 255)]
     private ?string $rol = null;
@@ -60,23 +50,6 @@ class Veterinario
         $this->citas = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): static
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
     public function getEdad(): ?int
     {
         return $this->edad;
@@ -89,29 +62,6 @@ class Veterinario
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): static
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
 
     public function getRol(): ?string
     {
@@ -226,4 +176,11 @@ class Veterinario
 
         return $this;
     }
+
+    public function getRoles(): array
+    {
+        return ['ROLE_VET']; // Devuelve un array con un rol de usuario por defecto
+
+    }
+
 }

@@ -5,21 +5,12 @@ namespace App\Entity;
 use App\Repository\ClienteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClienteRepository::class)]
-class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
+class Cliente extends Usuario
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $nombre = null;
-
+ 
     #[ORM\Column]
     private ?int $edad = null;
 
@@ -27,16 +18,7 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $direccion = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $mail = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $rol = null;
-
-    #[ORM\Column]
-    private ?int $telefono = null;
+    private ?string $rol = "ROLE_USER";
 
     /** 
      * @var Collection<int, Mascotas> 
@@ -63,22 +45,6 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
         $this->citas = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): static
-    {
-        $this->nombre = $nombre;
-        return $this;
-    }
-
     public function getEdad(): ?int
     {
         return $this->edad;
@@ -98,50 +64,6 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDireccion(string $direccion): static
     {
         $this->direccion = $direccion;
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): static
-    {
-        $this->mail = $mail;
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    public function getRol(): ?string
-    {
-        return $this->rol;
-    }
-
-    public function setRol(string $rol): static
-    {
-        $this->rol = $rol;
-        return $this;
-    }
-
-    public function getTelefono(): ?int
-    {
-        return $this->telefono;
-    }
-
-    public function setTelefono(int $telefono): static
-    {
-        $this->telefono = $telefono;
         return $this;
     }
 
@@ -229,20 +151,27 @@ class Cliente implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUserIdentifier(): string
+    public function getRol(): ?string
     {
-        return $this->mail;
+        return $this->rol;
     }
 
-    public function eraseCredentials(): void
+    public function setRol(string $rol): static
     {
-        // Para borrar datos sensibles
+        $this->rol = $rol;
+        return $this;
     }
+
     public function getRoles(): array
     {
-        return ['ROLE_USER']; // Devuelve un array con un rol de usuario por defecto
+        if(!$this->rol){
+            return ['ROLE_USER']; // Devuelve un array con un rol de usuario por defecto
+        }
+
+        return [$this->rol];
 
     }
+
 }
 
 

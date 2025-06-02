@@ -12,7 +12,7 @@ use Symfony\UX\Turbo\Attribute\Broadcast;
 class Chat
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue] 
     #[ORM\Column]
     private ?int $id = null;
 
