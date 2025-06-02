@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Chat;
 use App\Entity\Citas;
+use App\Entity\Cliente;
 use App\Entity\Veterinario;
 use App\Controller\BookFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 
 
 class BookAppController extends AbstractController
@@ -32,6 +34,8 @@ class BookAppController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             // Obtener el cliente actual de la sesión
             $cliente = $this->security->getUser();
             $cita->setClienteId($cliente);
@@ -51,6 +55,22 @@ class BookAppController extends AbstractController
             if ($ocupado) {
                 $this->addFlash('error', 'El veterinario ya tiene una cita en esta fecha. Por favor, elige otra fecha.');
                 return $this->redirectToRoute('nueva_cita');
+            }
+            $citaChat = $form->getData();
+            //Creamos chat si hemos seleccionado consulta en linea
+            if($citaChat->getTipo() == "consulta_online"){
+                
+                $chat = new Chat();
+                $clienteActual = $this->entityManager->getRepository(Cliente::class)->findOneBy([
+                    'mail' => $cliente->getUserIdentifier()
+                ]);
+                
+                $chat->setClienteId($clienteActual);
+                $chat->setVetId($selectedVet);
+                $chat->setContenido("...");
+                $chat->setFecha(new \DateTime());
+                $this->entityManager->persist($chat);
+                $this->entityManager->flush();
             }
 
             $this->entityManager->persist($cita);
