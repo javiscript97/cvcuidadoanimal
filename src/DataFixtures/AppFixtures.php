@@ -14,9 +14,32 @@ use App\Repository\MascotasRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Tests\Models\Enums\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
+    public function load(ObjectManager $manager): void
+    {
+        $admin = new Administrador();
+        $admin->setNombre('Admin');
+        $admin->setTelefono('0');
+        $admin->setmail('admin@cvcuidadoanimal.com');
+        $admin->setRol('ROLE_ADMIN');
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'spaceAdmin23'));
+        $manager->persist($admin);
+
+        $manager->flush();
+    }
+    
+    
+    /*
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -111,6 +134,7 @@ class AppFixtures extends Fixture
         $product6->setCaducidad(new DateTime());
         $manager->persist($product6);
 
+
         $manager->flush();
-    }
+    }*/
 }

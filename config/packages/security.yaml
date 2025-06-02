@@ -3,15 +3,30 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
         App\Entity\Cliente:
+            algorithm: bcrypt   
+        App\Entity\Veterinario:
+            algorithm: bcrypt 
+        App\Entity\Administrador:
             algorithm: bcrypt
 
-    # Proveedores de usuarios
+
     providers:
-        users_in_memory: { memory: null }
-        database_users:
+        admins:
+            entity:
+                class: App\Entity\Administrador
+                property: mail
+        veterinarios:
+            entity:
+                class: App\Entity\Veterinario
+                property: mail
+        clientes:
             entity:
                 class: App\Entity\Cliente
                 property: mail
+    
+        database_users:
+            chain:
+                providers: [admins, veterinarios, clientes]
 
     # Firewalls
     firewalls:
@@ -35,12 +50,21 @@ security:
         ROLE_VET: ROLE_USER
 
     # Control de acceso
+  
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/vet, roles: ROLE_VET }
-        - { path: ^/user, roles: ROLE_USER }
-        - { path: ^/historial/add, roles: ROLE_VET }
-        - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/panel-control, roles: ROLE_ADMIN }
+    - { path: ^/historial/add, roles: ROLE_VET }
+    - { path: ^/vet, roles: ROLE_VET }
+    - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/user, roles: ROLE_USER }
+    - { path: ^/agenda, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/historial, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/reservar-cita, roles: IS_AUTHENTICATED_FULLY }
+
+        
+
+
+        
 
 
 # Configuración para el entorno de test
