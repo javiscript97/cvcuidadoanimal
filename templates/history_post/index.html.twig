@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Historial Clíncio{% endblock %}
+{% block title %}Historial Clíncio {% endblock %}
 
 {% block body %}
 <section class="px-24 py-16">
@@ -12,31 +12,38 @@
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">ID</th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Fecha</th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Descripción</th>
-                        <th class="text-left py-3 px-4 font-semibold text-gray-600">cliente</th>
-                        <th class="text-left py-3 px-4 font-semibold text-gray-600">veterinario</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Afectado</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Veterinario</th>
+                        {% if is_granted('ROLE_VET') %}
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Acción</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for historial in historiales %}
                     <tr class="border-t">
                         <td class="py-3 px-4">{{ historial.id }}</td>
-                        <td class="py-3 px-4">{{ historial.fecha|date('Y-m-d H:i:s') }}</td>
+                        <td class="py-3 px-4">{{ historial.fecha|date('Y-m-d') }}</td>
                         <td class="py-3 px-4">{{ historial.descripcion }}</td>
                         <td class="py-3 px-4">{{historial.getMascotaNombre() }}</td>
                         <td class="py-3 px-4">{{ historial.getVetNombre() }}</td>
+                        {% if is_granted('ROLE_VET') %}
+                            <td class="border border-gray-200 px-4 py-2">
+                                <a href="{{ path('app_history_post_edit', { id: historial.id }) }}" class="text-yellow-500">Modificar</a>
+                                <a href="{{ path('app_history_post_delete', { id: historial.id }) }}" class="text-red-500 ml-4" onclick="return confirm('¿Estás seguro de que deseas eliminar este dato?');">Eliminar</a>
+                            </td>
+                        {% endif %}
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="6" class="text-center py-3">No hay citas disponibles</td>
+                        <td colspan="6" class="text-center py-3">No hay datos disponibles</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            {% if is_granted('ROLE_VET') %}
+            <a href="{{ path('app_history_post_add') }}" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white rounded px-4 py-2">Añadir</a>
+            {% endif %}
         </div>
-</section>
-<section class="hidden">
-    <button>Añadir</button>
-    <button>Modificar</button>
-    <button>Eliminar</button>
 </section>
 {% endblock %}

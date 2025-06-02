@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="w-full px-24 py-16 md:w-2/3 mx-auto mb-8">
-    <h1 class="text-2xl py-6 font-bold text-gray-900 dark:text-white mb-4">Reservar Cita</h1>
+    <h1 class="text-2xl py-6 font-bold text-gray-900 dark:text-white mb-4">Añadir Histórico Relevante</h1>
     {{ form_start(form) }}
      <div class="mb-4">
         {{ form_row(form.fecha) }}
@@ -30,26 +30,4 @@
     {{ form_end(form) }}
 </div>
 
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Descripción</th>    
-                <th>Mascota</th>
-                <th>Veterinario</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for historial in historiales %}
-                <tr>
-                    <td>{{ historial.fecha|date('Y-m-d') }}</td>
-                    <td>{{ historial.descripcion }}</td>
-                    <td>{{ historial.getMascotaId().getNombre() }}</td>
-                    <td>{{ historial.getVetId().getMail() }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
 {% endblock %}
