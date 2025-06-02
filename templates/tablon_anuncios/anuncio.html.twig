@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ anuncio.titulo }}{% endblock %}
+
+{% block body %}
+<div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-md">
+    <h1 class="text-4xl font-bold mb-4 text-gray-800">{{ anuncio.titulo }}</h1>
+
+    <p class="text-gray-500 text-sm mb-6">📅 Publicado el {{ anuncio.fecha|date('d/m/Y H:i') }}</p>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_VET') %}
+        <a href="{{ path('app_anuncio_edit', { id: anuncio.id }) }}" class="text-yellow-500 ">Modificar</a>
+        <a href="{{ path('app_anuncio_delete', { id: anuncio.id }) }}" class="text-red-500 ml-4 " onclick="return confirm('¿Estás seguro de que deseas eliminar este anuncio?');">Eliminar</a>
+    {% endif %}
+    <div class="prose prose-lg text-gray-800 mb-8">
+        {{ anuncio.contenido }}
+    </div>
+
+    <a href="{{ path('app_tablon_anuncios') }}"
+       class="inline-block text-blue-600 hover:text-blue-800 transition-colors duration-200">
+         Volver al tablón
+    </a>
+
+</div>
+{% endblock %}
+

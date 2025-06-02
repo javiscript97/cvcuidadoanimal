@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Anuncio{% endblock %}
+
+{% block body %}
+<div class="max-w-xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">Crear nuevo anuncio</h1>
+
+    {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+        <div>
+            {{ form_label(form.titulo, null, {'label_attr': {'class': 'block text-gray-700 font-semibold mb-2'}}) }}
+            {{ form_widget(form.titulo, {'attr': {'class': 'w-full border border-gray-300 p-2 rounded'}}) }}
+            {{ form_errors(form.titulo) }}
+        </div>
+
+        <div>
+            {{ form_label(form.contenido, null, {'label_attr': {'class': 'block text-gray-700 font-semibold mb-2'}}) }}
+            {{ form_widget(form.contenido, {'attr': {'class': 'w-full border border-gray-300 p-2 rounded min-h-[150px]'}}) }}
+            {{ form_errors(form.contenido) }}
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded shadow">
+                Publicar
+            </button>
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
