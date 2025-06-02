@@ -7,6 +7,8 @@ use App\Entity\Cliente;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -33,6 +35,10 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('mail', EmailType::class, ['label' => 'Email',
+            'constraints' => [
+                    new NotBlank(['message' => 'El correo no puede estar vacío']),
+                    new Email(['message' => 'Introduce un correo electrónico válido']),
+                ],
             'attr' => [
             'class' => 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'
             ]
