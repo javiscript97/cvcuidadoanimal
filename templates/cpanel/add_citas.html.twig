@@ -1,0 +1,28 @@
+{% extends 'base_cpanel.html.twig' %}
+
+{% block title %}Agregar Cita{% endblock %}
+
+{% block body %}
+<div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Agregar Cita</h1>
+    
+    {{ form_start(form) }}
+    <div class="mb-4">
+        {{ form_row(form.fecha) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.descripcion) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.tipo) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.cliente_id) }}
+    </div>  
+    <div class="mb-4">
+        {{ form_row(form.vet_id) }}
+    </div>  
+    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded px-4 py-2">Agregar Cita</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base_cpanel.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="px-24 py-5">
+        <h1 class="shadtext text-3xl font-bold invisible sm:invisible md:visible pt-5 py-5">Mascotas</h1>
+        <div class="max-w-2xl mx-auto mb-6">
+            <input
+                type="text"
+                id="search"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Buscar cliente"
+                >
+        </div>
+        <div class="overflow-x-auto  pb-24">
+            {% if mascotas|length > 0 %}
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-200 px-4 py-2">Nombre</th>
+                            <th class="border border-gray-200 px-4 py-2">Edad</th>
+                            <th class="border border-gray-200 px-4 py-2">Raza</th>
+                            <th class="border border-gray-200 px-4 py-2">Animal</th>
+                            <th class="border border-gray-200 px-4 py-2">Genero</th>
+                            <th class="border border-gray-200 px-4 py-2">Enfermedad</th>
+                            <th class="border border-gray-200 px-4 py-2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mascota in mascotas %}
+                            <tr>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.nombre }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.edad }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.raza }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.animal }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.genero }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ mascota.ficha }}</td>
+                                <td class="border border-gray-200 px-4 py-2">
+                                    <a href="{{ path('app_cpanel_mascota_edit', { id: mascota.id }) }}" class="text-yellow-500">Modificar</a>
+                                    <a href="{{ path('app_cpanel_mascota_delete', { id: mascota.id }) }}" class="text-red-500 ml-4" onclick="return confirm('¿Estás seguro de que deseas eliminar esta mascota?');">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No tienes mascotas registradas.</p>
+            {% endif %}
+        </div>
+</section>
+<script src="{{ asset('js/searchfilter.js') }}"></script>
+{% endblock %}

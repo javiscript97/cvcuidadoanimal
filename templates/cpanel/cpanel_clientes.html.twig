@@ -1,0 +1,53 @@
+{% extends 'base_cpanel.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="px-24 py-5">
+        <h1 class="shadtext text-3xl font-bold invisible sm:invisible md:visible pt-5 py-5">Clientes</h1>
+        <div class="max-w-2xl mx-auto mb-6">
+            <input
+                type="text"
+                id="search"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Buscar cliente"
+                >
+        </div>
+        <div class="overflow-x-auto  pb-24">
+            <table  class="min-w-full bg-white border border-gray-300" id="pharmacyTab">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">ID</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Nombre</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Edad</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Direccion</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Mail</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Telefono</th>
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr class="border-t">
+                        <td class="py-3 px-4">{{ cliente.id }}</td>
+                        <td class="py-3 px-4">{{ cliente.nombre }}</td>
+                        <td class="py-3 px-4">{{ cliente.edad }}</td>
+                        <td class="py-3 px-4">{{ cliente.direccion }}</td>
+                        <td class="py-3 px-4">{{ cliente.mail }}</td>
+                        <td class="py-3 px-4">{{ cliente.telefono}}</td>
+                        <td class="border border-gray-200 px-4 py-2">
+                            <a href="{{ path('app_cpanel_cl_edit', { id: cliente.id }) }}" class="text-yellow-500">Modificar</a>
+                            <a href="{{ path('app_cpanel_cl_delete', { id: cliente.id }) }}" class="text-red-500 ml-4" onclick="return confirm('¿Estás seguro de que deseas eliminar esta mascota?');">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center py-3">No hay clientes registrados</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</section>
+<script src="{{ asset('js/searchfilter.js') }}"></script>
+{% endblock %}

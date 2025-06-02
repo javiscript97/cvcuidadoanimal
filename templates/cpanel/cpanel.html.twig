@@ -1,0 +1,46 @@
+{% extends 'base_cpanel.html.twig' %}
+
+{% block title %}Panel de Control{% endblock %}
+
+{% block body %}
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Panel de Control</h1>
+    <div class="grid grid-flow-row auto-rows-max gap-4">
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+                <div class="text-xl text-white mb-2 rounded bg-indigo-500">
+                    <h2 class="text-xl p-2 font-semibold mb-2">Clientes</h2>
+                </div>
+                    <a href="{{ path('app_cpanel_cl_add') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Añadir</a>
+                    <a href="{{ path('app_cpanel_cl_show') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Mostrar</a>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+            <div class="text-xl text-white mb-2 rounded bg-indigo-500">
+                    <h2 class="text-xl p-2 font-semibold mb-2">Mascotas</h2>
+                </div>
+            <a href="{{ path('app_cpanel_mascota_add') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Añadir</a>
+            <a href="{{ path('app_cpanel_mascota_show') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Mostrar</a>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+            <div class="text-xl text-white mb-2 rounded bg-indigo-500">
+                    <h2 class="text-xl p-2 font-semibold mb-2">Veterinarios</h2>
+                </div>
+            <a href="{{ path('app_cpanel_vet_add') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Añadir</a>
+            <a href="{{ path('app_cpanel_vet_show') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Mostrar</a>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+            <div class="text-xl text-white mb-2 rounded bg-indigo-500">
+                    <h2 class="text-xl p-2 font-semibold mb-2">Citas</h2>
+                </div>
+            <a href="{{ path('app_cpanel_cita_add') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Añadir</a>
+            <a href="{{ path('app_cpanel_cita_show') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Mostrar</a>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+            <div class="text-xl text-white mb-2 rounded bg-indigo-500">
+                    <h2 class="text-xl p-2 font-semibold mb-2">Productos</h2>
+            </div>
+            <a href="{{ path('app_cpanel_producto_add') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Añadir</a>
+            <a href="{{ path('app_cpanel_producto_show') }}" class="mt-4 inline-block bg-indigo-500 text-white rounded px-4 py-2">Mostrar</a>
+            </div>
+    </div>
+</div>
+{% endblock %}

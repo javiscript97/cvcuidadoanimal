@@ -1,0 +1,51 @@
+{% extends 'base_cpanel.html.twig' %}
+
+{% block title %}Clinica Veterinaria!{% endblock %}
+
+{% block body %}
+<section class="px-24 py-5">
+        <h1 class="shadtext text-3xl font-bold invisible sm:invisible md:visible pt-5 py-5">Citas</h1>
+        <div class="max-w-2xl mx-auto mb-6">
+            <input
+                type="text"
+                id="search"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Buscar cita"
+                >
+        </div>
+        <div class="overflow-x-auto  pb-24">
+            {% if citas|length > 0 %}
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-200 px-4 py-2">Fechas</th>
+                            <th class="border border-gray-200 px-4 py-2">Descripción</th>
+                            <th class="border border-gray-200 px-4 py-2">Tipo</th>
+                            <th class="border border-gray-200 px-4 py-2">Cliente</th>
+                            <th class="border border-gray-200 px-4 py-2">Veterinario</th>
+                            <th class="border border-gray-200 px-4 py-2">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cita in citas %}
+                            <tr>
+                                <td class="border border-gray-200 px-4 py-2">{{ cita.fecha|date('Y-m-d H:i:s') }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ cita.descripcion }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ cita.tipo }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ cita.getClienteNombre() }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ cita.getVetNombre() }}</td>
+                                <td class="border border-gray-200 px-4 py-2">
+                                    <a href="{{ path('app_cpanel_cita_edit', { id: cita.id }) }}" class="text-yellow-500">Modificar</a>
+                                    <a href="{{ path('app_cpanel_cita_delete', { id: cita.id }) }}" class="text-red-500 ml-4" onclick="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No tienes citas registradas.</p>
+            {% endif %}
+        </div>
+</section>
+<script src="{{ asset('js/searchfilter.js') }}"></script>
+{% endblock %}
