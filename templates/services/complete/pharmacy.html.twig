@@ -23,6 +23,9 @@
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Stock</th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Precio (€)</th>
                         <th class="text-left py-3 px-4 font-semibold text-gray-600">Caducidad</th>
+                        {% if is_granted('ROLE_VET') %}
+                        <th class="text-left py-3 px-4 font-semibold text-gray-600">Acción</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +37,12 @@
                         <td class="py-3 px-4">{{ producto.stock }}</td>
                         <td class="py-3 px-4">{{ producto.precio }}</td>
                         <td class="py-3 px-4">{{ producto.caducidad|date('Y-m-d') }}</td>
+                        {% if is_granted('ROLE_VET') %}
+                            <td class="border border-gray-200 px-4 py-2">
+                                <a href="{{ path('app_producto_edit', { id: producto.id }) }}" class="text-yellow-500">Modificar</a>
+                                <a href="{{ path('app_producto_delete', { id: producto.id }) }}" class="text-red-500 ml-4" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">Eliminar</a>
+                            </td>
+                        {% endif %}
                     </tr>
                     {% else %}
                     <tr>
@@ -42,12 +51,10 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% if is_granted('ROLE_VET') %}
+            <a href="{{ path('app_producto_add') }}" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white rounded px-4 py-2">Añadir</a>
+            {% endif %}
         </div>
-</section>
-<section class="hidden">
-    <button>Añadir</button>
-    <button>Modificar</button>
-    <button>Eliminar</button>
 </section>
 <script src="{{ asset('js/searchfilter.js') }}"></script>
 {% endblock %}
