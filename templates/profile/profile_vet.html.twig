@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block body %}
+<div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Perfil de {{ user.nombre }}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold mb-2">Información Personal</h2>
+            <p><strong>Nombre:</strong> {{ user.nombre }}</p>
+            <p><strong>Email:</strong> {{ user.mail }}</p>
+            <p><strong>Teléfono:</strong> {{ user.telefono }}</p>
+            <p><strong>Edad:</strong> {{ user.edad }}</p>
+            <a href="{{ path('app_profile_edit') }}" class="mt-4 inline-block bg-green-500 text-white rounded px-4 py-2">Editar Perfil</a>
+            <a href="{{ path('app_profile_delete') }}" class="mt-4 inline-block bg-red-500 text-white rounded px-4 py-2" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">Eliminar Cuenta</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

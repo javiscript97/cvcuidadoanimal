@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Modificar Mascota{% endblock %}
-
 {% block body %}
 <div class="max-w-7xl mx-auto p-6">
+
     <h1 class="text-3xl font-bold mb-4">Modificar Mascota</h1>
     
     {{ form_start(form) }}
@@ -14,5 +14,19 @@
         {{ form_row(form.edad) }}
     </div>
     <div class="mb-4">
-        {{ form_row(form.especie) }}
+        {{ form_row(form.raza) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.animal) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.genero) }}
+    </div>
+     <div class="mb-4">
+        {{ form_row(form.ficha) }}
+    </div>   
+    <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Modificar</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
    

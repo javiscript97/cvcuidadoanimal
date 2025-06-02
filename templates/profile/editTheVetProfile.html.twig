@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block body %}
+<div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Editar Perfil</h1>
+    
+    {{ form_start(form) }}
+    <div class="mb-4">
+        {{ form_row(form.nombre) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.edad) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.mail) }}
+    </div>
+    <div class="mb-4">
+        {{ form_row(form.telefono) }}
+    </div>
+    
+    <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Actualizar Perfil</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
