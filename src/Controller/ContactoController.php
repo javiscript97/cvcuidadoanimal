@@ -46,7 +46,6 @@ class ContactoController extends AbstractController
                 ->text($mensaje['mensaje']);
 
             $mailer->send($email);
-            $this->addFlash('success', 'Gracias por tu mensaje. Te contactaremos pronto.');
             return $this->redirectToRoute('app_contacto');
         }
 
